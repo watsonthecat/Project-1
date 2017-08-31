@@ -1,5 +1,5 @@
 import random
-import string
+
 
 WORDLIST_FILENAME = "words.txt"
 
@@ -13,12 +13,11 @@ class Hangman():
     wordList = [""]
     def _init_(self):
 
-#python should be writing to a standard buffer, flush makes sure it's empty before you use it again
-#was getting an error so did a find/replace and added it everywhere--probably redundant 
-        print("Hangman: Stick man's life depends on you!", flush = True)
-        print("Are you ready to play?", flush = True)
-        print("If you are ready to play enter: 1", flush = True)
-        print("If you can't handle the pressure: 2", flush = True)
+
+        print("Hangman: Stick man's life depends on you!")
+        print("Are you ready to play?")
+        print("If you are ready to play enter: 1")
+        print("If you can't handle the pressure: 2")
         usr_input = input()
 
         if usr_input == '1':
@@ -27,10 +26,10 @@ class Hangman():
 
         elif usr_input == '2':
             #If the user enters 2, exit the game
-            print("Goodbye!", flush = True)
+            print("Goodbye!")
             exit()
         else:
-            print("I'm sorry, could you repeat that?", flush = True)
+            print("I'm sorry, could you repeat that?")
             self._init_()
 
     def loadWords(self):
@@ -62,8 +61,8 @@ class Hangman():
         return x
 
     def start_game(self):
-        print("You have the chance to save this sorry soul", flush = True)
-        print("If you make 6 wrong guesses, we hang the man!", flush = True)
+        print("You have the chance to save this sorry soul")
+        print("If you make 6 wrong guesses, we hang the man!")
         self.core_game()
 
 
@@ -103,7 +102,7 @@ class Hangman():
             #if their guess is correct
             if guess in theWord and guess not in lettersUsed:
 
-                print("You guessed correctly!", flush = True)
+                print("You guessed correctly!")
 
                 #add guess to lettersUsed
                 lettersUsed += guess + ","
@@ -125,7 +124,7 @@ class Hangman():
             #if their guess is incorrect
             elif guess not in theWord and guess not in lettersUsed:
                 guesses += 1
-                print("WRONG answer!! I thought you value life!", flush = True)
+                print("WRONG answer!! I thought you value life!")
                 lettersUsed += guess + ","
                 self.hangman_graphic(guesses)
                 print("Progress: " + "".join(progress))
@@ -134,9 +133,10 @@ class Hangman():
             elif guess in lettersUsed:
                 print("You have already guessed that letter!")
             else:
-                print("Is that even a letter? Try again...", flush = True)
+                print("Is that even a letter? Try again...")
 
-
+#python should be writing to a standard buffer, flush makes sure it's empty before you use it again
+#was getting an error so I put it on every line 
     def hangman_graphic(self, guesses):
         if guesses == 0:
             print ("________      ", flush = True)
@@ -218,3 +218,6 @@ class Hangman():
 
 game = Hangman()
 game._init_()
+#the _init_ function is called a constructor/initializer
+#it is automatically called when you create a new instance of a class
+#within that function, the newly created object is assigned to the parameter self
